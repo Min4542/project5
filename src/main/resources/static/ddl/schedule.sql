@@ -69,15 +69,15 @@ VALUES (4, '사원');
 
 
 INSERT INTO employee
-VALUES (seq_emp.nextval, '김사장', 1, 1);
+VALUES (seq_emp.nextval, '김사장', 1, 1, 1234);
 INSERT INTO employee
-VALUES (seq_emp.nextval, '김영업', 4, 2);
+VALUES (seq_emp.nextval, '김영업', 4, 2, 1111);
 INSERT INTO employee
-VALUES (seq_emp.nextval, '김철수', 4, 4);
+VALUES (seq_emp.nextval, '김철수', 4, 4, 2222);
 INSERT INTO employee
-VALUES (seq_emp.nextval, '이개발', 3, 4);
+VALUES (seq_emp.nextval, '이개발', 3, 4, 3333);
 INSERT INTO employee
-VALUES (seq_emp.nextval, '홍길동', 3, 2);
+VALUES (seq_emp.nextval, '홍길동', 3, 2, 4444);
 
 INSERT INTO schedule
 VALUES (1, '첫번째 스케줄','내용',1,1,'2021-10-11','2021-10-14' );

@@ -28,7 +28,7 @@
         WHERE scd_no = #{scdNo}
     </select>
 
-    <!--스케줄 등록되는데 테스트 통과가 안됨..-->
+    <!--스케줄 등록-->
     <insert id="insertSchedule">
         INSERT INTO schedule
         (scd_no, scd_title, scd_content, writer_emp_no, scd_code, start_date, end_date)

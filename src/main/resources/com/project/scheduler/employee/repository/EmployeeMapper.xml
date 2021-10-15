@@ -5,26 +5,43 @@
 
 <mapper namespace="com.project.scheduler.employee.repository.EmployeeMapper">
 
+    <resultMap type="com.project.scheduler.employee.domain.Department" id="departmentMap">
 
-    <resultMap id="employeeMap" type="com.project.scheduler.employee.domain.Employee">
-        <result property="empNo" column="emp_no" />
-        <result property="empName" column="emp_name" />
-        <result property="dptNo" column="dpt_no" />
-        <result property="dptName" column="dpt_name" />
-        <result property="posNo" column="pos_no" />
-        <result property="posName" column="pos_name" />
-    </resultMap>
+    <result column="dpt_no" property="dptNo"/>
 
-    <!--  사원 정보 가져오기  -->
+    <result column="dpt_name" property="dptName"/>
+
+</resultMap>
+
+    <resultMap type="com.project.scheduler.employee.domain.Position" id="positionMap">
+
+    <result column="pos_no" property="posNo"/>
+
+    <result column="pos_name" property="posName"/>
+
+</resultMap>
+
+    <resultMap type="com.project.scheduler.employee.domain.Employee" id="employeeMap">
+
+    <result column="emp_no" property="empNo"/>
+
+    <result column="emp_name" property="empName"/>
+
+    <collection property="dep" resultMap="departmentMap"/>
+
+    <collection property="pos" resultMap="positionMap"/>
+
+</resultMap>
+
+    <!--      사원 정보 가져오기-->
     <select id="getEmployee" resultMap="employeeMap">
-        SELECT
-        E.emp_no, E.emp_name, E.dpt_no, D.dpt_name, E.pos_no, P.pos_name
+        SELECT E.emp_no, E.emp_name, D.dpt_no, D.dpt_name, P.pos_no, P.pos_name
         FROM employee E
         JOIN department D
         ON E.dpt_no = D.dpt_no
         JOIN position P
         ON E.pos_no = P.pos_no
-        WHERE emp_no = #{empNo)
+        WHERE emp_no = #{empNo}
     </select>
 
     <!--사원 삭제-->
@@ -40,5 +57,11 @@
         WHERE emp_no =#{empNo}
     </update>
 
+    <!--해당 사원 존재 확인기능-->
+<!--    <select id="existEmployee" resultMap="employeeMap">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM employee-->
+<!--        WHERE emp_no = #{empNo}-->
+<!--    </select>-->
 
 </mapper>
