@@ -39,6 +39,9 @@ ADD CONSTRAINT fk_pos_no FOREIGN KEY(pos_no) REFERENCES position(pos_no);
 ALTER TABLE schedule
 ADD CONSTRAINT fk_writer_emp_no FOREIGN KEY(writer_emp_no) REFERENCES employee(emp_no);
 
+ALTER TABLE employee
+ADD emp_pw NUMBER(10);
+
 DROP TABLE employee;
 DROP TABLE schedule;
 DROP TABLE department;
