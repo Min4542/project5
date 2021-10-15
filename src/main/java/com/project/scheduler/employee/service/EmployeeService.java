@@ -21,7 +21,7 @@ public class EmployeeService {
     // 사원 정보 수정
     boolean modifyEmployee(Employee employee) {
         return employeeMapper.modifyEmployee(employee);
-    };
+    }
 
     // 사원 정보 삭제
     boolean deleteEmployee(int empNo){

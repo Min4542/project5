@@ -17,8 +17,14 @@
 
     <!--  사원 정보 가져오기  -->
     <select id="getEmployee" resultMap="employeeMap">
-        SELECT * FROM employee
-        WHERE emp_no = #{empNo}
+        SELECT
+        E.emp_no, E.emp_name, E.dpt_no, D.dpt_name, E.pos_no, P.pos_name
+        FROM employee E
+        JOIN department D
+        ON E.dpt_no = D.dpt_no
+        JOIN position P
+        ON E.pos_no = P.pos_no
+        WHERE emp_no = #{empNo)
     </select>
 
     <!--사원 삭제-->

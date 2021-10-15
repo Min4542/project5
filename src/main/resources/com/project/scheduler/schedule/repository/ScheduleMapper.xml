@@ -42,7 +42,7 @@
         WHERE scd_no = #{scdNo}
     </delete>
 
-    <!--스케줄 수정-->
+    <!--스케줄 수정 작성자, 제목, 내용, 기간-->
     <update id="modifySchedule">
         UPDATE schedule SET
         scd_title = #{scdTitle}, scd_content = #{scdContent}

@@ -20,7 +20,7 @@ class ScheduleMapperTest {
     @Test
     @DisplayName("스케줄 목록을 전체 다 가져와야 한다.")
     void getScheduleList() {
-        List<Schedule> scheduleList = scheduleMapper.getScheduleList();
+        List<Schedule> scheduleList = scheduleMapper.getMonthScheduleList(10);
         System.out.println("\n++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("scheduleList = " + scheduleList);
         System.out.println("++++++++++++++++++++++++++++++++++++++++++\n");
@@ -41,7 +41,6 @@ class ScheduleMapperTest {
     void insertSchedule() {
         Schedule schedule = new Schedule();
 
-        schedule.setScdNo(15);
         schedule.setScdTitle("네번째 스케쥴");
         schedule.setScdContent("네번째 내용");
         schedule.setWriterEmpNo(2);
@@ -50,8 +49,7 @@ class ScheduleMapperTest {
         schedule.setStartDate(date);
         schedule.setEndDate(date);
 
-        Schedule schedule1 = scheduleMapper.insertSchedule(schedule);
-        System.out.println("schedule1 = " + schedule1);
+        scheduleMapper.insertSchedule(schedule);
     }
 
     @Test
