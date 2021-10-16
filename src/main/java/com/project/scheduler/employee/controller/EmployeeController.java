@@ -13,10 +13,6 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    public boolean loginEmployee(int empNo, int empPw){
-        boolean result = employeeService.loginEmployee(empNo, empPw);
-        return result;
-    }
 
 
 

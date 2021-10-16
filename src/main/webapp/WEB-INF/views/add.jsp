@@ -21,6 +21,8 @@
             # 내용: <br>
             <textarea class="form-control" rows="5" cols="30" name="scdContent"></textarea>
             <br>
+            # 시작날짜: <input type="date" name="startDate"><br>
+            # 종료날짜: <input type="date" name="endDate"><br>
 
             <label>
                 #일정 구분: 

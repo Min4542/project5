@@ -16,10 +16,12 @@
         <result property="endDate" column="end_date" />
 
     </resultMap>
-    <!--스케줄 전체조회-->
 
-    <select id="getScheduleList" resultMap="scheduleMap">
-        SELECT * FROM schedule
+    <!--스케줄 월별 전체조회.........?-->
+    <select id="getMonthScheduleList" resultMap="scheduleMap">
+        SELECT scd_no, scd_title, scd_content, writer_emp_no, scd_code, start_date, end_date
+        FROM schedule
+        WHERE start_date BETWEEN ('2021-07-01')AND ('2021-07-31');
     </select>
 
     <!--스케줄 상세조회-->

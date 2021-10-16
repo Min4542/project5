@@ -24,7 +24,7 @@ CREATE TABLE position (
 CREATE TABLE schedule (
     scd_no NUMBER(10),
     scd_title VARCHAR2(50) NOT NULL,
-    scd_content VARCHAR(100),
+    scd_content VARCHAR2(100),
     writer_emp_no NUMBER (10) NOT NULL,
     scd_code VARCHAR2 (10) NOT NULL,
     start_date DATE NOT NULL,
