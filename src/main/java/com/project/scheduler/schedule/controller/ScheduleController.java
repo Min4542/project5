@@ -30,9 +30,10 @@ public class ScheduleController {
 
     public String scdAdd(Schedule schedule, String type, Model model) {
 
-        log.info(schedule);
         // 클라이언트로부터 데이터를 받아 서비스메서드로 보냄
+        log.info("==========================================");
         scheduleService.insertSchedule(type, schedule);
+        log.info(schedule);
 
         return "/add";
     }

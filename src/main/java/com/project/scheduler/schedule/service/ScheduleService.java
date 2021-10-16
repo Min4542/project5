@@ -53,9 +53,12 @@ public class ScheduleService {
 
     // 스케쥴 등록
     public boolean insertSchedule(String type, Schedule schedule){
+
         // 1.임시직원 한명 생성
         Employee employee = employeeMapper.getEmployee(3);
+
         // 로그인 상황 파악하여 작성자 사번 데이터 삽입
+
         // 2.임시직원의 사번으로 작성자번호 생성
         schedule.setWriterEmpNo(employee.getEmpNo());
 
