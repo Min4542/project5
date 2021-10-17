@@ -80,7 +80,7 @@ public class ScheduleService {
         String startDT = schedule.getStartD().concat(schedule.getStartTime());
         String endDT = schedule.getEndD().concat(schedule.getEndTime());
 
-        //Date타입으로 변환
+        //Date타입으로 변환//시작날짜
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-ddHH:mm");
 
         try {
@@ -90,6 +90,7 @@ public class ScheduleService {
             e.printStackTrace();
         }
 
+        //Date타입으로 변환//종료날짜
         SimpleDateFormat fm2= new SimpleDateFormat("yyyy-MM-ddHH:mm");
 
         try {
