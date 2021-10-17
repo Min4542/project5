@@ -75,14 +75,10 @@ public class ScheduleService {
     public boolean insertSchedule(String type, Schedule schedule) {
 
         //스트링타입으로 날짜와 시간을 받아 변환하여 넣어줌...
-        String startD = schedule.getStartD();
-        String endD = schedule.getEndD();
-        String startT = schedule.getStartTime();
-        String endT = schedule.getEndTime();
 
         //날짜와 시간을 합쳐서
-        String startDT= startD.concat(startT);
-        String endDT = endD.concat(endT);
+        String startDT = schedule.getStartD().concat(schedule.getStartTime());
+        String endDT = schedule.getEndD().concat(schedule.getEndTime());
 
         //Date타입으로 변환
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-ddHH:mm");
@@ -98,7 +94,7 @@ public class ScheduleService {
 
         try {
             Date date2 = fm2.parse(endDT);
-            schedule.setEndDate(date2);
+            schedule.setEndDate(date2);//스케쥴의 Date타입 변수에 저장
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -112,12 +108,6 @@ public class ScheduleService {
 
         // 3.타입에 따른 스케쥴 코드 생성
         schedule.setScdCode(type);
-        /*
-             Response (서버 -> 클라이언트) 로 전달할 때에는 @JsonFormat 을 사용,
-             Request(클라이언트 -> 서버)로 전달할 때는 @DateTimeFormat 을 사용한다.
-             (post요청시 request에서는 @jsonFormat 사용 가능)
-         */
-
 
         return scheduleMapper.insertSchedule(schedule);
     }
