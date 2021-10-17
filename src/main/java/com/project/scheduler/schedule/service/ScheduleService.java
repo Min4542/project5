@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import com.project.scheduler.employee.domain.Employee;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -72,6 +74,34 @@ public class ScheduleService {
     // 스케쥴 등록
     public boolean insertSchedule(String type, Schedule schedule) {
 
+        //스트링타입으로 날짜와 시간을 받아 변환하여 넣어줌...
+        String startD = schedule.getStartD();
+        String endD = schedule.getEndD();
+        String startT = schedule.getStartTime();
+        String endT = schedule.getEndTime();
+
+        //날짜와 시간을 합쳐서
+        String startDT= startD.concat(startT);
+        String endDT = endD.concat(endT);
+
+        //Date타입으로 변환
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+
+        try {
+            Date date = fm.parse(startDT);
+            schedule.setStartDate(date);//스케쥴의 Date타입 변수에 저장
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat fm2= new SimpleDateFormat("yyyy-MM-ddHH:mm");
+
+        try {
+            Date date2 = fm2.parse(endDT);
+            schedule.setEndDate(date2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         // 로그인 상황 파악하여 작성자 사번 데이터 삽입
 
         // 1.임시직원 한명 생성
@@ -87,6 +117,7 @@ public class ScheduleService {
              Request(클라이언트 -> 서버)로 전달할 때는 @DateTimeFormat 을 사용한다.
              (post요청시 request에서는 @jsonFormat 사용 가능)
          */
+
 
         return scheduleMapper.insertSchedule(schedule);
     }

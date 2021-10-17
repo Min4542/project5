@@ -6,13 +6,18 @@ import com.project.scheduler.schedule.domain.Schedule;
 import com.project.scheduler.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +25,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/schedule")
 @Log4j2
+
+
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
     private final EmployeeService employeeService;
+
+    //Date타입으로 변환하는 방법 <1>
+//    @InitBinder
+//    protected void initBinder(WebDataBinder binder){
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat,true));
+//    }
 
     @GetMapping("/add")
     public String add() {
@@ -35,8 +49,9 @@ public class ScheduleController {
     public String scdAdd(Schedule schedule, String type, Model model) {
 
         // 클라이언트로부터 데이터를 받아 서비스메서드로 보냄
+        log.info(schedule);
         log.info("==========================================");
-        boolean result = scheduleService.insertSchedule(type, schedule);
+        scheduleService.insertSchedule(type, schedule);
         log.info(schedule);
         return "/add";
     }

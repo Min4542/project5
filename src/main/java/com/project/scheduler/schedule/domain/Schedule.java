@@ -19,8 +19,17 @@ public class Schedule {
     private String scdCode; // 스케쥴 코드 (A-00, A : 회사 일정, D : 부서 일정, P: 개인 일정 - 부서(사원) 번호)
 
     // 컨트롤러로부터 입력받는 date의 타입이 string이므로 date로 형변환
-    @DateTimeFormat(pattern = "yy-MM-dd")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm")
     private Date startDate; // 스케쥴 시작 날짜
-    @DateTimeFormat(pattern = "yy-MM-dd")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm")
     private Date endDate; // 스케쥴 종료 날짜
+
+
+    //스트링타입
+    private String startD;//스케쥴 시작
+    private String endD;//스케쥴 종료
+
+    private String startTime;//스케쥴시작시간
+    private String endTime;//스케쥴종료시간
+
 }

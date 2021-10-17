@@ -13,8 +13,8 @@
         <result property="scdContent" column="scd_content" />
         <result property="writerEmpNo" column="writer_emp_no" />
         <result property="scdCode" column="scd_code" />
-        <result property="startDate" column="start_date" />
-        <result property="endDate" column="end_date" />
+        <result property="startD" column="start_date" />
+        <result property="endD" column="end_date" />
 
     </resultMap>
     <!--스케쥴 전체조회, 쓰진 않을 듯-->
@@ -40,7 +40,7 @@
         INSERT INTO schedule
         (scd_no, scd_title, scd_content, writer_emp_no, scd_code, start_date, end_date)
         VALUES
-        (seq_scd.nextval, #{scdTitle}, #{scdContent}, #{writerEmpNo}, #{scdCode}, #{startDate},#{endDate})
+        (seq_scd.nextval, #{scdTitle}, #{scdContent}, #{writerEmpNo}, #{scdCode}, #{startDate,jdbcType=TIMESTAMP},#{endDate,jdbcType=TIMESTAMP})
     </insert>
 
     <!--스케줄 삭제-->

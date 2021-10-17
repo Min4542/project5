@@ -89,3 +89,6 @@ INSERT INTO schedule
 VALUES (1, '첫번째 스케줄','내용',1,1,'2021-10-11','2021-10-14' );
 INSERT INTO schedule
 VALUES (2, '두번째 스케줄','내용',2,2,'2021-10-13','2021-10-14' );
+
+--자바랑 sql 연동해서 시간까지 받아오는 방법..인데.....왜......
+ #{startDate,jdbcType=TIMESTAMP},#{endDate,jdbcType=TIMESTAMP})
