@@ -20,9 +20,8 @@ class ScheduleMapperTest {
     @Test
     @DisplayName("해당하는 달의 스케줄 목록을 가져와야 한다.")
     void getScheduleList() {
-        Schedule schedule = new Schedule();
 
-        List<Schedule> scheduleList = scheduleMapper.getMonthScheduleList(07);
+        List<Schedule> scheduleList = scheduleMapper.getMonthScheduleList(10);
         System.out.println("\n++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("scheduleList = " + scheduleList);
         System.out.println("++++++++++++++++++++++++++++++++++++++++++\n");
@@ -57,8 +56,8 @@ class ScheduleMapperTest {
     @Test
     @DisplayName("해당하는 스케쥴이 삭제돼야한다.")
     void deleteSchedule() {
-        boolean result = scheduleMapper.deleteSchedule(15);
-        Schedule schedule = scheduleMapper.getSchedule(15);
+        boolean result = scheduleMapper.deleteSchedule(1);
+        Schedule schedule = scheduleMapper.getSchedule(1);
         assertTrue(result);//삭제성공하면 트루가 나올 것이다.
         assertNull(schedule);
 
@@ -67,10 +66,13 @@ class ScheduleMapperTest {
     @Test
     @DisplayName("해당하는 스케쥴이 수정돼야한다.")
     void modifySchedule() {
-        Schedule schedule = new Schedule();
-        schedule.setScdNo(1);
+        Schedule schedule = scheduleMapper.getSchedule(22);
+        Date date = new Date();
         schedule.setScdContent("수정수정");
         schedule.setScdTitle("수정된 스케쥴");
+        schedule.setWriterEmpNo(2);
+        schedule.setStartDate(date);
+        schedule.setEndDate(date);
 
         boolean result = scheduleMapper.modifySchedule(schedule);
         Schedule schedule1 = scheduleMapper.getSchedule(1);

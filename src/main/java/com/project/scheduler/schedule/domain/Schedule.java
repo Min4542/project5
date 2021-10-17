@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,8 +19,8 @@ public class Schedule {
     private String scdCode; // 스케쥴 코드 (A-00, A : 회사 일정, D : 부서 일정, P: 개인 일정 - 부서(사원) 번호)
 
     // 컨트롤러로부터 입력받는 date의 타입이 string이므로 date로 형변환
-    @DateTimeFormat(pattern = "yy-MM-dd")
+    @DateTimeFormat(pattern = "yy-MM-dd 'T' HH:mm:ss")
     private Date startDate; // 스케쥴 시작 날짜
-    @DateTimeFormat(pattern = "yy-MM-dd")
+    @DateTimeFormat(pattern = "yy-MM-dd 'T' HH:mm:ss")
     private Date endDate; // 스케쥴 종료 날짜
 }

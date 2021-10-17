@@ -25,6 +25,8 @@
 
     <result column="emp_no" property="empNo"/>
 
+    <result column="password" property="password"/>
+
     <result column="emp_name" property="empName"/>
 
     <collection property="dep" resultMap="departmentMap"/>
@@ -57,11 +59,17 @@
         WHERE emp_no =#{empNo}
     </update>
 
-    <!--해당 사원 존재 확인기능-->
-<!--    <select id="existEmployee" resultMap="employeeMap">-->
-<!--        SELECT COUNT(*)-->
-<!--        FROM employee-->
-<!--        WHERE emp_no = #{empNo}-->
-<!--    </select>-->
+    <!--사번 존재 확인기능-->
+    <select id="checkEmpNo" resultType="int">
+        SELECT COUNT(*)
+        FROM employee
+        WHERE emp_no = #{empNo}
+    </select>
 
+    <!--비밀번호 가져오기-->
+    <select id="getPassword" resultType="String">
+        SELECT password
+        FROM employee
+        WHERE emp_no =#{empNo}
+    </select>
 </mapper>

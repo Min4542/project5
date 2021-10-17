@@ -21,8 +21,8 @@
             # 내용: <br>
             <textarea class="form-control" rows="5" cols="30" name="scdContent"></textarea>
             <br>
-            # 시작날짜: <input type="date" name="startDate"><br>
-            # 종료날짜: <input type="date" name="endDate"><br>
+            # 시작날짜: <input type="datetime-local" name="startDate"><br>
+            # 종료날짜: <input type="datetime-local" name="endDate"><br>
 
             <label>
                 #일정 구분: 
@@ -36,7 +36,7 @@
       </form>
    </div>
 
-   <a id="go" href="/board/list">글 목록보기</a>
+   <a id="go" href="/schedule/plan">스케줄 확인하기</a>
 
 </body>
 

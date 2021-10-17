@@ -18,7 +18,19 @@ public class EmployeeService {
        return employeeMapper.getEmployee(empNo);
     }
 
+    // 사번 확인
+    public boolean checkEmpNo(int empNo) {
+        if(employeeMapper.checkEmpNo(empNo) == 1){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
+    //비밀번호 가져오기
+    public String getPassward(int empNo) {
+        return employeeMapper.getPassword(empNo);
+    }
     // 이후 사원등록
 
     // 사원 정보 수정

@@ -11,5 +11,5 @@ public class Employee {
     private String empName; // 사원 이름
     private Department dep; // 부서 정보
     private Position pos; // 직급 정보
-    private int empPw; //로그인비번
+    private String password; //로그인비번
 }

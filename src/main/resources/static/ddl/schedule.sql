@@ -1,11 +1,13 @@
 CREATE SEQUENCE seq_emp;
 CREATE SEQUENCE seq_scd;
 
+
 CREATE TABLE employee (
     emp_no NUMBER(10),
     emp_name VARCHAR2(20) NOT NULL,
     dpt_no NUMBER(10) NOT NULL,
     pos_no NUMBER(10) NOT NULL,
+    password VARCHAR2(10) NOT NULL,
     CONSTRAINT pk_employee PRIMARY KEY (emp_no)
 );
 
@@ -39,13 +41,14 @@ ADD CONSTRAINT fk_pos_no FOREIGN KEY(pos_no) REFERENCES position(pos_no);
 ALTER TABLE schedule
 ADD CONSTRAINT fk_writer_emp_no FOREIGN KEY(writer_emp_no) REFERENCES employee(emp_no);
 
-ALTER TABLE employee
-ADD emp_pw NUMBER(10);
 
 DROP TABLE employee;
 DROP TABLE schedule;
 DROP TABLE department;
 DROP TABLE position;
+
+DROP SEQUENCE seq_emp;
+DROP SEQUENCE seq_scd;
 
 SELECT * FROM employee;
 SELECT * FROM department;

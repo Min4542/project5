@@ -21,70 +21,83 @@ public class ScheduleService {
     private final ScheduleMapper scheduleMapper;
     private final EmployeeMapper employeeMapper;
 
-     //월별 스케쥴 가져오기
-    public List<Schedule> getMonthScheduleList(Schedule schedule,int month){
+    //월별 스케쥴 가져오기
+    public List<Schedule> getMonthScheduleList(Schedule schedule, int month) {
+        List<Schedule> scheduleList = scheduleMapper.getAllScheduleList(schedule);
 
-        //sql에 있는 날짜 데이터 스트링으로 변환
-        String startDate = scheduleMapper.dateToString(schedule.getStartDate());
-        String substring = startDate.substring(2, 4);
+        int m = 0;//month와 비교하기 위한 변수
 
-        int m= Integer.parseInt(substring);//month와 비교하기 위해 int로 형변환(sql데이터)
+        //가져온 스케쥴리스트(2차원배열이니까) 하나씩 뽑아서 시작날짜 알아내기
 
-        if(month == m) {
-            return scheduleMapper.getMonthScheduleList(month);
+        for (Schedule s : scheduleList) {
 
-        } else{
+            //sql에 있는 날짜 데이터 스트링으로 변환
+            String startDate = scheduleMapper.dateToString(s.getStartDate());
 
-        // n개 이상일 경우 그외 일정 m개 표시
+            //월부분 잘라내기
+            String substring = startDate.substring(2, 4);
+
+            //month와 비교하기 위해 int로 형변환(sql데이터)
+            m = Integer.parseInt(substring);
+
+        }
+
+        if (month == m) {//들어온 month와 기존 데이터 중에서 뽑아낸 m의 수가 같다면
+            return scheduleMapper.getMonthScheduleList(m);//리턴해야하는데...얘가 아닌데...
+
+        } else {
+
+            // n개 이상일 경우 그외 일정 m개 표시
             return null;
         }
 
     }
-    
+
     // 일별 스케쥴 가져오기
     public List<Schedule> getDayScheduleList(int day) {
         return scheduleMapper.getDayScheduleList(day);
     }
 
     // 스케쥴 세부 일정 가져오기 - 스케쥴 번호를 통해 스케쥴 세부 정보 가져오기
-    public Schedule getSchedule(int scdNo){
-     return scheduleMapper.getSchedule(scdNo);
+    public Schedule getSchedule(int scdNo) {
+        return scheduleMapper.getSchedule(scdNo);
     }
 
-    // 스케쥴 등록
-    public boolean insertSchedule(String type, Schedule schedule){
+    //전체 스케쥴 가져오기
+    public List<Schedule> getAllSchedule(Schedule schedule) {
+        return scheduleMapper.getAllScheduleList(schedule);
+    }
 
-        // 1.임시직원 한명 생성
-        Employee employee = employeeMapper.getEmployee(3);
+
+    // 스케쥴 등록
+    public boolean insertSchedule(String type, Schedule schedule) {
 
         // 로그인 상황 파악하여 작성자 사번 데이터 삽입
+
+        // 1.임시직원 한명 생성
+        Employee employee = employeeMapper.getEmployee(2);
 
         // 2.임시직원의 사번으로 작성자번호 생성
         schedule.setWriterEmpNo(employee.getEmpNo());
 
         // 3.타입에 따른 스케쥴 코드 생성
-        if(type.equals("A")) {
-            schedule.setScdCode("A");
-        }else if(type.equals("D")) {
-            schedule.setScdCode("D");
-        }else if(type.equals("P")) {
-            schedule.setScdCode("P");
-        }
+        schedule.setScdCode(type);
         /*
              Response (서버 -> 클라이언트) 로 전달할 때에는 @JsonFormat 을 사용,
              Request(클라이언트 -> 서버)로 전달할 때는 @DateTimeFormat 을 사용한다.
              (post요청시 request에서는 @jsonFormat 사용 가능)
          */
+
         return scheduleMapper.insertSchedule(schedule);
     }
 
     // 스케쥴 삭제
-    public boolean deleteSchedule(int scdNo){
+    public boolean deleteSchedule(int scdNo) {
         return scheduleMapper.deleteSchedule(scdNo);
     }
 
     // 스케쥴 수정
-    public boolean modifySchedule(Schedule schedule){
+    public boolean modifySchedule(Schedule schedule) {
         return scheduleMapper.modifySchedule(schedule);
     }
 }
