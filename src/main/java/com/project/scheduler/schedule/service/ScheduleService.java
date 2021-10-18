@@ -24,8 +24,10 @@ public class ScheduleService {
     private final EmployeeMapper employeeMapper;
 
     // 전체 일정 가져오기
-    public List<Schedule> getScheduleList(){
-        return scheduleMapper.getScheduleList();
+    public List<Schedule> getScheduleList(String type){
+        Employee employee = employeeMapper.getEmployee(2);
+        String code = makeScdCode(type, employee);
+        return scheduleMapper.getScheduleList(code);
     }
 
     // 스케쥴 세부 일정 가져오기 - 스케쥴 번호를 통해 스케쥴 세부 정보 가져오기
@@ -35,7 +37,11 @@ public class ScheduleService {
 
     // 일정 등록
     public boolean insertSchedule(String type, Schedule schedule) {
+        // 1.임시직원 한명 생성
+        Employee employee = employeeMapper.getEmployee(2);
 
+        schedule.setWriterEmpNo(1);
+        // 날짜 변환
         try {
             schedule.setStartDate(stringToDate(schedule.getStartDay(), schedule.getStartTime()));
             schedule.setEndDate(stringToDate(schedule.getEndDay(), schedule.getEndTime()));
@@ -43,14 +49,12 @@ public class ScheduleService {
             e.printStackTrace();
         }
 
-        // 1.임시직원 한명 생성
-        Employee employee = employeeMapper.getEmployee(2);
-
+        // 코드 생성
         schedule.setScdCode(makeScdCode(type, employee));
 
         log.info(schedule);
 
-        return false;
+        return scheduleMapper.insertSchedule(schedule);
     }
 
     // String(날짜와 시간)을 Date타입으로 변환

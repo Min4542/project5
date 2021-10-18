@@ -49,7 +49,7 @@ public class Schedule {
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-        String changedDate = dayFormat.format(startDate) + "T" + timeFormat.format(startDate);
+        String changedDate = dayFormat.format(date) + "T" + timeFormat.format(date);
 
         System.out.println(changedDate);
         return changedDate;

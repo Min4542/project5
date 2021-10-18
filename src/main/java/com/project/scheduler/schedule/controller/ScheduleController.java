@@ -64,7 +64,7 @@ public class ScheduleController {
     @ResponseBody
     public ResponseEntity<List<Schedule>> data() {
         log.info("호출됨");
-        List<Schedule> schedules = scheduleService.getScheduleList();
+        List<Schedule> schedules = scheduleService.getScheduleList("C");
         log.info(schedules);
         return new ResponseEntity<>(schedules, HttpStatus.OK);
     }

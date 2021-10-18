@@ -9,8 +9,9 @@ import java.util.List;
 @Mapper
 public interface ScheduleMapper {
 
-    //스케쥴 전체 가져오기
-    List<Schedule> getScheduleList();
+    //스케쥴 회사 일정 가져오기
+    List<Schedule> getScheduleList(String code);
+
 
     // 스케쥴 세부 일정 가져오기 - 스케쥴 번호를 통해 스케쥴 세부 정보 가져오기
     Schedule getSchedule(int scdNo);

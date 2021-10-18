@@ -17,10 +17,11 @@
         <result property="endDate" column="end_date" />
 
     </resultMap>
-    <!--스케쥴 전체조회, 쓰진 않을 듯-->
+    <!--회사 일정-->
     <select id="getScheduleList" resultMap="scheduleMap">
         SELECT *
         FROM schedule
+        WHERE scd_code = #{code}
     </select>
 
     <!--스케줄 상세조회-->
