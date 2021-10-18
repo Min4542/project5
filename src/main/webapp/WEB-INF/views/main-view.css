@@ -1,0 +1,55 @@
+/* CSS */
+.clearfix::after{
+    display: block;
+    content: '';
+    clear:both;
+}
+
+.clearfix:after {
+    clear:both;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+.main-view {
+    /* background: red; */
+    height: 100vh;
+}
+
+.main-view .side-bar {
+    width: 15%;
+    height: 100vh;
+    float: left;
+    /* background: blue; */
+}
+
+.main-view .side-bar .logo {
+    width: 100%;
+    border: 1px solid black;
+    height: 16vh;
+    /* background: purple; */
+}
+
+.main-view .side-bar .menu button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.main-view  footer{
+width: 100%;
+background: red;
+}
+
+.main-view  footer .main{
+    display: flex;
+}
