@@ -8,13 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,28 +44,29 @@ public class ScheduleController {
         return "/add";
     }
 
-    @GetMapping("scd-add")
+    @GetMapping("/scd-add")
     public String scdAdd(Schedule schedule, String type, Model model) {
 
         // 클라이언트로부터 데이터를 받아 서비스메서드로 보냄
         log.info(schedule);
         log.info("==========================================");
+
         scheduleService.insertSchedule(type, schedule);
-        log.info(schedule);
-        return "/add";
+        return "/calendar";
     }
 
-    @GetMapping("/plan")//스케쥴 가져오기
-    public String viewSchedule(Employee employee, Schedule schedule, Model model) {
+    @GetMapping("/calendar")
+    public String calendar() {
+        return "/calendar";
+    }
 
-        //해당사원의 스케쥴 가져와야하는데.......없어도.......???기능만.....???????????
-
-        Schedule schedules = scheduleService.getSchedule(5);
+    @GetMapping("/get-schedule")
+    @ResponseBody
+    public ResponseEntity<List<Schedule>> data() {
+        log.info("호출됨");
+        List<Schedule> schedules = scheduleService.getScheduleList();
         log.info(schedules);
-
-        //받은 스케쥴을 모델에 담아 plan이라는 이름으로 보내기
-        model.addAttribute("schedules", schedules);
-        return "/plan";
+        return new ResponseEntity<>(schedules, HttpStatus.OK);
     }
 
     @GetMapping("/modify")//수정화면요청

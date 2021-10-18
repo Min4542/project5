@@ -13,19 +13,13 @@
         <result property="scdContent" column="scd_content" />
         <result property="writerEmpNo" column="writer_emp_no" />
         <result property="scdCode" column="scd_code" />
-        <result property="startD" column="start_date" />
-        <result property="endD" column="end_date" />
+        <result property="startDate" column="start_date" />
+        <result property="endDate" column="end_date" />
 
     </resultMap>
     <!--스케쥴 전체조회, 쓰진 않을 듯-->
-    <select id="getAllScheduleList" resultMap="scheduleMap">
+    <select id="getScheduleList" resultMap="scheduleMap">
         SELECT *
-        FROM schedule
-    </select>
-
-    <!--스케줄 월별조회.........?-->
-    <select id="getMonthScheduleList" resultMap="scheduleMap">
-        SELECT scd_no, scd_title, scd_content, writer_emp_no, scd_code, start_date, end_date
         FROM schedule
     </select>
 
